@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useRouter } from "next/navigation"
 import { loginAuthService } from "@/services/auth/login.service"
+import cookies from 'js-cookie';
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -28,9 +29,12 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 
     try {
         const result = await loginAuthService(email, password)
+
         if (result.status) {
+          const user = result.data[0].user;
           const emisores = result.data[0].retorno.map((item: any) => ({
             ruc: item["ruc"],
+            id_local: item["id_local"],
             id_emisor: item["id_emisor"],
             nombre_comercial: item["nombre_comercial"],
             razon_social: item["razon_social"],
@@ -44,17 +48,16 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
             local: item['local']
           }));
 
-          // Guardar los emisores en el localStorage
-          localStorage.setItem("emisores", JSON.stringify(emisores))
+          // Guardar en caché y cookie
+          localStorage.setItem("emisores", JSON.stringify(emisores));
+          cookies.set('uuidfact', JSON.stringify(user), { secure: true});
 
-          // Redirigir a cpanel
           router.push("/dashboard")
         } else {
           setError(result.message)
         }
       } catch (err) {
-        console.log(err)
-        setError("An unexpected error occurred. Please try again.")
+        setError("Ocurrio un error, vuelve a intentarlo.")
       } finally {
         setIsLoading(false)
       }

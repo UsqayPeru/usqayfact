@@ -1,9 +1,7 @@
 export const loginAuthService = async(email: string, password: string) => {
     try {   
 
-        const endpoint = process.env.NODE_ENV === 'production'
-                    ? process.env.NEXT_PUBLIC_ENDPOINT_BACKEND_PROD
-                    : process.env.NEXT_PUBLIC_ENDPOINT_BACKEND_DEV;
+        const endpoint =  process.env.NEXT_PUBLIC_ENDPOINT_BACKEND
 
         const params = {
             usuario: email,

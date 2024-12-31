@@ -4,8 +4,8 @@ import React from 'react'
 function Home() {
   return (
     <div>
-      <Button>
-        Click me!
+      <Button className='m-4'>
+        Arturo se fue de vacaciones no molestar!
       </Button>
     </div>
   )
