@@ -97,6 +97,8 @@ export function InvoicesTable() {
   const [currentPage, setCurrentPage] = useState(1)
   const [itemsPerPage] = useState(7)
 
+  const endpoint = process.env.NEXT_PUBLIC_API
+
 
 
   useEffect(() => {
@@ -215,25 +217,75 @@ export function InvoicesTable() {
                 </TableCell>
                 <TableCell>
                   <div className="flex justify-end gap-2">
-                    <Link
-                      href={`http://localhost:8080/api/pdf/${comprobante.ruc_emisor}-03-${comprobante.serie}-${comprobante.correlativo}.pdf`}
-                      target="_blank"
-                      className="h-8 w-8 text-red-600 hover:text-red-700"
-                    >
-                      <FileText className="h-4 w-4 mt-2" />
-                    </Link>
-                    <Link
-                      href={`http://localhost:8080/api/xml/${comprobante.ruc_emisor}-03-${comprobante.serie}-${comprobante.correlativo}.xml`}
-                      target="_blank"
-                      className="h-8 w-8 text-green-600 hover:text-green-700"
-                    >
-                      <FileJson className="h-4 w-4 mt-2" />
-                    </Link>
+                   {
+                      comprobante.tipo_documento === "BO" ? (
+                        <>
+                          <Link
+                            href={`${endpoint}/pdf/${comprobante.ruc_emisor}-03-${comprobante.serie}-${comprobante.correlativo}.pdf`}
+                            target="_blank"
+                            className="h-8 w-8 text-red-600 hover:text-red-700"
+                          >
+                            <FileText className="h-4 w-4 mt-2" />
+                          </Link>
+                          <Link
+                            href={`${endpoint}/xml/${comprobante.ruc_emisor}-03-${comprobante.serie}-${comprobante.correlativo}.xml`}
+                            target="_blank"
+                            className="h-8 w-8 text-green-600 hover:text-green-700"
+                          >
+                            <FileJson className="h-4 w-4 mt-2" />
+                          </Link>
 
-                    <OptionsMenu
-                      onAction={handleAction}
-                      validationInfo={validationInfo}
-                    />
+                          <Link
+                            href={`${endpoint}/zip/R-${comprobante.ruc_emisor}-03-${comprobante.serie}-${comprobante.correlativo}.zip`}
+                            target="_blank"
+                            className="h-8 w-8 text-blue-600 hover:text-blue-700"
+                          >
+                            <FileJson className="h-4 w-4 mt-2" />
+                          </Link>
+                          <OptionsMenu
+                            onAction={handleAction}
+                            validationInfo={validationInfo}
+                            pdfUrl={`${endpoint}/pdf/${comprobante.ruc_emisor}-03-${comprobante.serie}-${comprobante.correlativo}.pdf`}
+                            serie={`${comprobante.serie}`}
+                            correlativo={`${comprobante.correlativo}`}
+                          />
+                        </>
+                      ) : (
+                        <>
+                          <Link
+                            href={`${endpoint}/pdf/${comprobante.ruc_emisor}-01-${comprobante.serie}-${comprobante.correlativo}.pdf`}
+                            target="_blank"
+                            className="h-8 w-8 text-red-600 hover:text-red-700"
+                          >
+                            <FileText className="h-4 w-4 mt-2" />
+                          </Link>
+                          <Link
+                            href={`${endpoint}/xml/${comprobante.ruc_emisor}-01-${comprobante.serie}-${comprobante.correlativo}.xml`}
+                            target="_blank"
+                            className="h-8 w-8 text-green-600 hover:text-green-700"
+                          >
+                            <FileJson className="h-4 w-4 mt-2" />
+                          </Link>
+                          <Link
+                            href={`${endpoint}/zip/R-${comprobante.ruc_emisor}-01-${comprobante.serie}-${comprobante.correlativo}.zip`}
+                            target="_blank"
+                            className="h-8 w-8 text-blue-600 hover:text-blue-700"
+                          >
+                            <FileJson className="h-4 w-4 mt-2" />
+                          </Link>
+                          <OptionsMenu
+                            onAction={handleAction}
+                            validationInfo={validationInfo}
+                            pdfUrl={`${endpoint}/pdf/${comprobante.ruc_emisor}-01-${comprobante.serie}-${comprobante.correlativo}.pdf`}
+                            serie={`${comprobante.serie}`}
+                            correlativo={`${comprobante.correlativo}`}
+                          />
+                        </>
+                      )
+                   }
+                    
+
+                   
                   </div>
                 </TableCell>
               </TableRow>

@@ -111,18 +111,11 @@ function HeaderComponent() {
                                             href="/reseller/dashboard"
                                             className="flex justify-start"
                                         > 
-                                            CPanel
+                                            Intranet
                                         </Link>
                                     </div>
                                    
-                                    <div className="grid grid-cols-1 items-center gap-4">
-                                        <Link
-                                            href="/reseller/monitoring"
-                                            className="flex justify-start"
-                                        > 
-                                            Monitoreo
-                                        </Link>
-                                    </div>
+                                   
                                     <div className="grid grid-cols-1 items-center gap-4">
                                         <Link
                                             href="#"

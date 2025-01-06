@@ -34,15 +34,18 @@ interface OptionsMenuProps {
   onAction: (action: string) => void
   validationInfo: ValidationInfo,
   pdfUrl?: string
+  serie?:string
+  correlativo?:string
 }
 
-export function OptionsMenu({ onAction, validationInfo, pdfUrl = "http://localhost:8080/api/pdf/10721937661-03-BU01-2.pdf" }: OptionsMenuProps) {
+export function OptionsMenu({ onAction, validationInfo, pdfUrl, serie, correlativo}: OptionsMenuProps) {
   const [showValidation, setShowValidation] = useState(false)
   const [showWhatsapp, setShowWhatsapp] = useState(false)
   const [showAnulate, setShowAnulate] = useState(false)
   const [showPreview, setShowPreview] = useState(false)
   const [selectedFormat, setSelectedFormat] = useState<'A4' | '80MM' | 'A5'>('A4')
   const [isLoading, setIsLoading] = useState(false)
+  const [phoneNumber, setPhoneNumber] = useState("+51")
 
 
   const handlePrintFormat = async (format: 'A4' | '80MM' | 'A5') => {
@@ -53,6 +56,13 @@ export function OptionsMenu({ onAction, validationInfo, pdfUrl = "http://localho
     } finally {
       setIsLoading(false)
     }
+  }
+
+  const sendToWspp = () => {
+    let message = `Adjunto comprobante electrónico, para poder visualizarlos hacer click en el siguiente link: ${pdfUrl}`;
+    const encodedMessage = encodeURIComponent(message || '');
+    const url = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
+    window.open(url, '_blank');
   }
 
   return (
@@ -98,11 +108,10 @@ export function OptionsMenu({ onAction, validationInfo, pdfUrl = "http://localho
         </DropdownMenuContent>
       </DropdownMenu>
 
-       {/* Preview Dialog */}
        <Dialog open={showPreview} onOpenChange={setShowPreview}>
         <DialogContent className="">
           <DialogHeader>
-            <DialogTitle>Comprobante: BU01-168</DialogTitle>
+            <DialogTitle>Comprobante: {serie}-{correlativo}</DialogTitle>
           </DialogHeader>
           <div className="grid gap-6">
             <div className="flex justify-between items-center gap-4">
@@ -173,12 +182,14 @@ export function OptionsMenu({ onAction, validationInfo, pdfUrl = "http://localho
                 <Input 
                   placeholder="+51957532973"
                   className="w-full"
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
                 />
             </div>
           </div>
           <DialogFooter>
             <Button variant="outline" onClick={() => setShowWhatsapp(false)}>Cancelar</Button>
-            <Button >Enviar</Button>
+            <Button onClick={sendToWspp}>Enviar</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
