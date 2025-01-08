@@ -23,7 +23,8 @@ export const loginAuthService = async(email: string, password: string) => {
         }
 
         const data = await response.json()
-        if ( data[0].retorno === 0 ) {
+        console.log(data)
+        if ( data.retorno === 0 ) {
             return {
                 status: false,
                 data,
@@ -39,6 +40,7 @@ export const loginAuthService = async(email: string, password: string) => {
        
             
     } catch (error) {
+        console.log(error)
         return {
             status: false,
             message: 'No se pudo autenticar, vuelve a intentarlo.'

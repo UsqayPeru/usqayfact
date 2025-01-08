@@ -31,8 +31,8 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         const result = await loginAuthService(email, password)
 
         if (result.status) {
-          const user = result.data[0].user;
-          const emisores = result.data[0].retorno.map((item: any) => ({
+          const user = result.data.retorno[0].username
+          const emisores = result.data.retorno.map((item: any) => ({
             ruc: item["ruc"],
             id_local: item["id_local"],
             id_emisor: item["id_emisor"],
@@ -57,6 +57,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
           setError(result.message)
         }
       } catch (err) {
+        console.log(err)
         setError("Ocurrio un error, vuelve a intentarlo.")
       } finally {
         setIsLoading(false)
