@@ -104,11 +104,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         items: [
           {
             title: "Ver guías",
-            url: "/billing",
+            url: "/guias/view",
           },
           {
             title: "Nueva guía",
-            url: "/boletas",
+            url: "/guias/new",
           },
         ],
       },
@@ -120,11 +120,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         items: [
           {
             title: "SIRE Ventas",
-            url: "/billing",
+            url: "/sire/ventas",
           },
           {
             title: "SIRE Compras",
-            url: "/boletas",
+            url: "/sire/compras",
           },
         ],
       },
@@ -136,23 +136,23 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         items: [
           {
             title: "Mi Cuenta",
-            url: "/billing",
+            url: "/perfil",
           },
           {
             title: "Configuración Empresa",
-            url: "/boletas",
+            url: "/configuracion",
           },
           {
             title: "Usuarios",
-            url: "#",
+            url: "/usuarios",
           },
           {
             title: "Locales y Series",
-            url: "#",
+            url: "/localesyseries",
           },
           {
             title: "API (Integración)",
-            url: "/integration"
+            url: "/api"
           }
         ],
       },

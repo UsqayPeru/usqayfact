@@ -13,10 +13,11 @@ import { OptionsMenu } from "./OptionsMenu"
 import { Badge } from "@/components/ui/badge"
 import { useEffect, useState } from "react"
 import { getInvoicesAll } from "@/services/invoices/invoice.service"
+
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
+  //PaginationEllipsis,
   PaginationItem,
   PaginationLink,
   PaginationNext,
@@ -154,8 +155,8 @@ export function InvoicesTable() {
 
   return (
     <div>
-      <div className="overflow-x-auto">
-        <Table>
+      <div >
+        <Table className="overflow-auto">
           <TableHeader>
             <TableRow className="bg-gray-50">
               <TableHead className="font-semibold">FECHA</TableHead>
@@ -181,7 +182,7 @@ export function InvoicesTable() {
                 <TableCell>{comprobante.serie}</TableCell>
                 <TableCell>{comprobante.correlativo}</TableCell>
                 <TableCell>{comprobante.documento_receptor}</TableCell>
-                <TableCell className="text-center">{comprobante.denominacion_receptor}</TableCell>
+                <TableCell className="text-center max-w-1 truncate">{comprobante.denominacion_receptor}</TableCell>
                 <TableCell className="text-center">{comprobante.moneda}</TableCell>
                 <TableCell>{comprobante.direccion}</TableCell>
                 <TableCell className="text-right">{comprobante.total_venta}</TableCell>

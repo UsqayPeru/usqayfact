@@ -19,11 +19,15 @@ export default async function FacturadorLayout({ children }: { children: React.R
 
   return (
     <>
+      <div className="fixed top-0 left-0 w-full z-50">
       <Banner />
+      </div>
       <SidebarProvider>
         <AppSidebar  className="mt-10 fixed"/>
         <SidebarInset>
-          <HeaderComponent />
+          <div className="mt-10 ">
+          <HeaderComponent/>
+          </div>
           {children}
         </SidebarInset>
       </SidebarProvider>

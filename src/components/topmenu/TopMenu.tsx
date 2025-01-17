@@ -3,7 +3,7 @@
 import cookies from 'js-cookie';
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { FaBars, FaStore } from "react-icons/fa";
+//import { FaBars, FaStore } from "react-icons/fa";
 import { FiHelpCircle } from "react-icons/fi";
 import { PiSignOutBold } from "react-icons/pi";
 import * as React from "react"
@@ -16,14 +16,14 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
-import { useRouter, usePathname } from "next/navigation";
+//import { useRouter, usePathname } from "next/navigation";
 import { Separator } from '../ui/separator';
 
 
 export const TopMenu = () => {
 
-  const router = useRouter();
-  const pathname = usePathname()
+  //const router = useRouter();
+  //const pathname = usePathname()
 
   const [isUser, setIsUser] = useState("");
 
@@ -31,10 +31,10 @@ export const TopMenu = () => {
 
   const [isClient, setIsClient] = useState(false);
 
-  const [showTour, setShowTour] = useState(false);
+  //const [showTour, setShowTour] = useState(false);
 
-  const [open, setOpen] = React.useState(false)
-  const [value, setValue] = React.useState("")
+  //const [open, setOpen] = React.useState(false)
+  //const [value, setValue] = React.useState("")
 
 
   useEffect(() => {

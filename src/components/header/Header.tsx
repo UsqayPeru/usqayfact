@@ -14,7 +14,9 @@ import { ModalEnviroment } from "../enviroment/ModalEnviroment";
 import Cookies from "js-cookie";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import Link from "next/link";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../ui/select";
+import { Select, SelectContent, SelectGroup, SelectItem, 
+    //SelectLabel, 
+    SelectTrigger, SelectValue } from "../ui/select";
 
 function HeaderComponent() {
     const [isProduction, setIsProduction] = useState(false)
